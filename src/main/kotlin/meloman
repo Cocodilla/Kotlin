@@ -1,0 +1,26 @@
+fun main() {
+    
+    val purchaseAmount = 15000
+    val isRegularCustomer = true
+
+    val finalPrice = calculateFinalPrice(purchaseAmount, isRegularCustomer)
+    println("Итоговая стоимость: $finalPrice рублей")
+}
+
+
+fun calculateFinalPrice(amount: Int, isRegularCustomer: Boolean): Int {
+    var priceAfterDiscount = amount
+
+
+    when {
+        amount in 1001..10000 -> priceAfterDiscount -= 100
+        amount > 10000 -> priceAfterDiscount *= 0.95
+    }
+
+   
+    if (isRegularCustomer) {
+        priceAfterDiscount *= 0.99
+    }
+
+ return priceAfterDiscount.toInt()
+}
