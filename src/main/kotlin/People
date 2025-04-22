@@ -2,9 +2,10 @@ fun main() {
     val likes = 41
 
     val ending = when {
-        likes % 100 || likes % 10 in 2..4||10..50 -> "людям"
-        likes % 10 == 1 -> "человеку"
-        else -> "людям"
+        likes % 100 in 11..14 -> "людям"  
+        likes % 10 == 1 -> "человеку"     
+        likes % 10 in 2..4 -> "людям"     
+        else -> "людям"                   
     }
 
     println("Понравилось $likes $ending")
