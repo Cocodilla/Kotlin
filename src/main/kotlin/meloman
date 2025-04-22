@@ -1,5 +1,4 @@
 fun main() {
-    
     val purchaseAmount = 15000
     val isRegularCustomer = true
 
@@ -7,9 +6,8 @@ fun main() {
     println("Итоговая стоимость: $finalPrice рублей")
 }
 
-
 fun calculateFinalPrice(amount: Int, isRegularCustomer: Boolean): Int {
-    var priceAfterDiscount = amount
+    var priceAfterDiscount = amount.toDouble()  // Переводим в Double для точных вычислений
 
 
     when {
@@ -17,10 +15,9 @@ fun calculateFinalPrice(amount: Int, isRegularCustomer: Boolean): Int {
         amount > 10000 -> priceAfterDiscount *= 0.95
     }
 
-   
     if (isRegularCustomer) {
         priceAfterDiscount *= 0.99
     }
 
- return priceAfterDiscount.toInt()
+    return priceAfterDiscount.toInt()  // Округляем до целого числа
 }
