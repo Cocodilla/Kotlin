@@ -1,0 +1,36 @@
+fun main() {
+    fun calculateCommission(
+        cardType: String = "Мир",
+        previousTransfers: Int = 0,
+        transferAmount: Int
+    ): Any {
+        // Проверка суточного лимита
+        if (transferAmount > 150_000) return "Ошибка: превышен суточный лимит"
+
+        // Проверка месячного лимита
+        if (previousTransfers + transferAmount > 600_000) return "Ошибка: превышен месячный лимит"
+
+        return when (cardType) {
+            "Mastercard" -> {
+                val monthlyLimit = 75_000
+                val excess = (previousTransfers + transferAmount) - monthlyLimit
+
+                when {
+                    previousTransfers >= monthlyLimit -> (transferAmount * 0.006 + 20).toInt()
+                    excess > 0 -> (excess * 0.006 + 20).toInt()
+                    else -> 0
+                }
+            }
+
+            "Visa" -> {
+                val commission = (transferAmount * 0.0075).toInt()
+                if (commission < 35) 35 else commission
+            }
+
+            "Мир" -> 0
+
+            else -> 0
+        }
+    }
+
+}
